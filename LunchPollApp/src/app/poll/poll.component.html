@@ -1,0 +1,38 @@
+<h3 class="text-center">Vote no seu restaurante favorito!</h3>
+
+<p *ngIf="!service.list"><em>Loading...</em></p>
+
+<div class="table-responsive">
+  <table class='table text-center' *ngIf="service.list">
+    <tbody>
+      <tr *ngFor="let local of service.list">
+        <td>{{ local.localName }}</td>
+        <td>
+          <!-- <button (click)="addVote(local)" class="btn btn-primary"> Votar <i class="far fa-thumbs-up"></i></button> -->
+          <button (click)="confirmVote(content, local)" class="btn btn-primary"> Votar <i
+              class="far fa-thumbs-up"></i></button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Confirmação de voto</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form>
+      <div class="form-group">
+        <label for="email">Informe seu e-mail para registrar seu voto</label>
+        <input id="email" class="form-control" name="email" type="email">
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="addVote()">Save</button>
+  </div>
+</ng-template>
